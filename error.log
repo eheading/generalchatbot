@@ -1,0 +1,35 @@
+=== Dev Server Run — 2026-02-27 ===
+
+STARTUP
+-------
+✓ Server starts successfully on http://localhost:3000
+⚠ Warning: Next.js inferred workspace root incorrectly (multiple lockfiles detected)
+  → Fix: set `turbopack.root` in next.config.ts
+
+API ENDPOINTS
+-------------
+✓ GET  /           → 200 OK
+✓ GET  /api/models → 200 OK (344 models, capabilities detected correctly)
+✓ GET  /api/prompts → 200 OK (empty array)
+✓ POST /api/chat   → 403 from OpenRouter (region restriction on test model — expected, not a code error)
+✓ POST /api/generate-image → 400 "prompt and model are required" (correct validation)
+
+TYPESCRIPT
+----------
+✓ npx tsc --noEmit → 0 errors
+
+LINT (npm run lint)
+-------------------
+⚠ components/MessageBubble.tsx:63  — <img> should be <Image> from next/image  [@next/next/no-img-element]
+  STATUS: Fixed — added eslint-disable comment (images are dynamic base64/external URLs incompatible with next/image without domain config)
+
+⚠ components/ModelSelector.tsx:4   — 'Button' is defined but never used  [@typescript-eslint/no-unused-vars]
+  STATUS: Fixed — removed unused import
+
+OVERALL: 0 errors, 2 warnings → fixed below
+
+POST-FIX VERIFICATION
+---------------------
+✓ npm run lint  → 0 errors, 0 warnings
+✓ npx tsc --noEmit → 0 errors
+✓ Server running on http://localhost:3000
