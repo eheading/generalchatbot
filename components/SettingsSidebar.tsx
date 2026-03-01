@@ -56,7 +56,7 @@ export default function SettingsSidebar({
   }
 
   return (
-    <div className="flex flex-col w-80 border-r shrink-0">
+    <div className="flex flex-col w-80 border-r shrink-0 min-h-0">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b">
         <h2 className="font-semibold text-sm">Settings</h2>
@@ -65,7 +65,7 @@ export default function SettingsSidebar({
         </Button>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 min-h-0">
         <div className="p-4 space-y-6">
           <ModelSelector selectedModel={selectedModel} onModelChange={onModelChange} />
 
