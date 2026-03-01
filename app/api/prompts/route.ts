@@ -7,11 +7,11 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const body = await req.json()
-  const { name, role, content } = body
+  const { name, role, content, documents } = body
   if (!name || !content) {
     return NextResponse.json({ error: 'name and content are required' }, { status: 400 })
   }
-  const prompt = savePrompt({ name, role: role ?? '', content })
+  const prompt = savePrompt({ name, role: role ?? '', content, documents: documents ?? [] })
   return NextResponse.json(prompt, { status: 201 })
 }
 

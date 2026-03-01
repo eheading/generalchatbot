@@ -1,3 +1,10 @@
+export interface UploadedDocument {
+  id: string
+  name: string
+  content: string
+  selected: boolean
+}
+
 export type MessageRole = 'user' | 'assistant' | 'system'
 
 export interface MessageContent {
@@ -43,6 +50,7 @@ export interface SavedPrompt {
   role: string
   content: string
   createdAt: number
+  documents?: UploadedDocument[]
 }
 
 export interface LLMSettings {

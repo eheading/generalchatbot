@@ -7,6 +7,8 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import ModelSelector from './ModelSelector'
 import SystemPromptPanel from './SystemPromptPanel'
 import LLMSettingsPanel from './LLMSettingsPanel'
+import DocumentPanel from './DocumentPanel'
+import type { UploadedDocument } from './DocumentPanel'
 import type { LLMSettings, ModelCapabilities } from '@/lib/types'
 import { DEFAULT_LLM_SETTINGS } from '@/lib/types'
 
@@ -15,10 +17,12 @@ interface SettingsSidebarProps {
   role: string
   systemPrompt: string
   settings: LLMSettings
+  documents: UploadedDocument[]
   onModelChange: (modelId: string, capabilities: ModelCapabilities) => void
   onRoleChange: (role: string) => void
   onSystemPromptChange: (prompt: string) => void
   onSettingsChange: (settings: LLMSettings) => void
+  onDocumentsChange: (docs: UploadedDocument[]) => void
 }
 
 export default function SettingsSidebar({
@@ -26,10 +30,12 @@ export default function SettingsSidebar({
   role,
   systemPrompt,
   settings,
+  documents,
   onModelChange,
   onRoleChange,
   onSystemPromptChange,
   onSettingsChange,
+  onDocumentsChange,
 }: SettingsSidebarProps) {
   const [collapsed, setCollapsed] = useState(false)
 
@@ -68,8 +74,17 @@ export default function SettingsSidebar({
           <SystemPromptPanel
             role={role}
             systemPrompt={systemPrompt}
+            documents={documents}
             onRoleChange={onRoleChange}
             onSystemPromptChange={onSystemPromptChange}
+            onDocumentsChange={onDocumentsChange}
+          />
+
+          <Separator />
+
+          <DocumentPanel
+            documents={documents}
+            onDocumentsChange={onDocumentsChange}
           />
 
           <Separator />
